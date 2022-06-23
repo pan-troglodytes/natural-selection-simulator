@@ -46,7 +46,11 @@ func _ready():
 	state=states.WANDER
 	
 func _process(_delta):
-	
+	for trait in traits:
+		
+		if traits[trait] == null:
+			queue_free()
+			return
 	if transform == oldPos:
 		oldPos = transform
 		hop(twist)
