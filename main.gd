@@ -6,7 +6,7 @@ var error = ""
 var colonies = []
 
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	isAnInt.compile("[0-9]+")
 	isAFloat.compile("[+-]?([0-9]*[.])?[0-9]+")
@@ -64,12 +64,6 @@ func _ready():
 		print(error)
 		get_tree().quit()
 
-		
-	
-
-	
-		
-	
 func terrainInit(terrainAttributesArguments):
 	var attributesAndErrors = attributesArgumentsToDictionary(terrainAttributesArguments)
 	var terrainAttributes = attributesAndErrors[0]
@@ -78,7 +72,6 @@ func terrainInit(terrainAttributesArguments):
 		"heightMap" : null,
 		"amplitude" : null
 	}
-	
 	
 	var heightMapFile = File.new()
 	
@@ -93,9 +86,6 @@ func terrainInit(terrainAttributesArguments):
 			error = error + valueAndError[1]
 		else:
 			error = error + "Invalid attribute: " + attribute + "\n"
-			
-			
-			
 	for attribute in terrainAttributesValid:
 		if terrainAttributesValid[attribute] == null:
 			error = error + "Unspecified attribute: " + attribute + "\n"
@@ -123,7 +113,6 @@ func plantsInit(plantsAttributesArguments):
 			var valueAndError = validateFloat(attribute, plantAttributes[attribute])
 			$terrain/Timer.set_wait_time(getRandom(valueAndError[0]))
 			error = error + valueAndError[1]
-	
 	
 func rabbitInit(rabbitAttributesArguments):
 	var attributesAndErrors = attributesArgumentsToDictionary(rabbitAttributesArguments)
@@ -329,10 +318,7 @@ func validateColour(attributeName, attributeValue):
 
 	return [attributeValue, errorNew]
 
-
-
 func getRandom(attributeRange):
-	
 	# get a random value between the given range
 	if typeof(attributeRange[0]) == TYPE_INT:
 		return int(floor(rand_range(int(attributeRange[0]), int(attributeRange[attributeRange.size()-1]))))

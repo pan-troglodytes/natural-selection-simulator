@@ -74,8 +74,7 @@ func generate():
 			for z in range(0, DIMENSION.z):
 				block = AIR
 				var height = int(heightMap.get_pixel(x, z).r * DIMENSION.y)
-				#print(heightMap.get_pixel(x, z).r  * DIMENSION.y)
-				#print(height)
+	
 				if y <= height:
 					block = GRASS
 
@@ -165,8 +164,6 @@ func spawnObject(objectPath, parent, x,z):
 	
 	return objectNew
 	
-	##objectNew.global_transform.origin.y = objectNew.global_transform.origin.y + 7
-
 
 func _on_Timer_timeout():
 	spawnObject("res://plant.tscn", self, floor(rand_range(0,DIMENSION.x)),floor(rand_range(0,DIMENSION.z)))

@@ -41,17 +41,10 @@ var layerRabbitEat = 1
 var layerRabbitReproduce = 2
 var layerPlant = 3
 
-
-
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	connect("reproduce", get_parent(), "birth")
 	state=states.WANDER
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	
 	if transform == oldPos:
@@ -89,12 +82,8 @@ func stateLogic():
 
 
 func hop(direction):
-	
-		
 	set_rotation(Vector3(0, direction, 0))
 	
-	
-
 	if $groundChecker.get_collider() != null:
 		energy = energy - 1
 		age = age + 1
@@ -107,10 +96,6 @@ func hop(direction):
 			retreat = self.rotation_degrees.y - 180
 		set_rotation(Vector3(0, deg2rad(retreat), 0))
 
-		
-
-
-
 func getTarget():
 	var distanceCurrent
 	var distanceLowest = null
@@ -120,7 +105,6 @@ func getTarget():
 		greeding = true
 	if energy >= traits["reproductiveThreshold"] + traits["greed"]:
 		greeding = false
-	
 	
 	# can only collide with valid objects (for performance)
 	if greeding:
@@ -239,12 +223,9 @@ func setTraits(parentTraits, mutation):
 	$rabbitMesh.material_override.set_shader_param("patternColor", traits["patternColour"])
 	$rabbitMesh.material_override.set_shader_param("baseColor", traits["baseColour"])
 	$rabbitMesh.material_override.set_shader_param("coatTex", coatTexture)
-	
-	
+
 	get_parent().updateQuantity()
 	
-
-
 func interact():
 	for body in $interactionRange.get_overlapping_bodies():
 		if body != null && body == target:

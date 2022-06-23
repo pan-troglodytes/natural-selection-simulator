@@ -5,11 +5,7 @@ var energy
 var plants
 var ground
 var dead = false
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	plants = get_node("/root/main/plants")
 	ground = get_parent()
@@ -28,9 +24,6 @@ func eaten():
 	dead = true
 	$dieTimer.wait_time = 10
 	return energyToGive
-
-
-
 
 func _on_dieTimer_timeout():
 	if dead:
