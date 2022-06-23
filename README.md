@@ -4,6 +4,7 @@ natural selection simulator (nss) is a 3d zero player game where rabbits compete
 rabbits consume energy as they live and it can only be recovered by eating the available food, only the fittest will survive and pass on their traits. 
 users can manipulate different aspects of the simulation such as the rabbits traits and the structure of the terrain they hop on
 
+## screenshots
 
 ## build
 
