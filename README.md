@@ -5,6 +5,9 @@ rabbits consume energy as they live and it can only be recovered by eating the a
 users can manipulate different aspects of the simulation such as the rabbits traits and the structure of the terrain they hop on
 
 ## screenshots
+[![bunny](https://raw.githubusercontent.com/pan-troglodytes/natural-selection-simulator/master/screenshots/bunny01.png)](bunny)
+[![bunny](https://raw.githubusercontent.com/pan-troglodytes/natural-selection-simulator/master/screenshots/bunny02.png)](bunny)
+[![bunny](https://raw.githubusercontent.com/pan-troglodytes/natural-selection-simulator/master/screenshots/bunny03.png)](bunny)
 
 ## build
 
