@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/TerminusTTF.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=18]
+font_data = ExtResource( 1 )
+
+[sub_resource type="ViewportTexture" id=19]
+viewport_path = NodePath("Viewport")
+
+[node name="tag" type="Spatial"]
+transform = Transform( 0.360811, 0, 0, 0, 0.360811, 0, 0, 0, 0.360811, 0, 4.32059, 0 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 300, 300 )
+transparent_bg = true
+
+[node name="Label" type="Label" parent="Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 18 )
+text = "test"
+align = 1
+valign = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 18.7538, 0, 0, 0, 18.7538, 0, 0, 0, 18.7538, 0, 0, 0 )
+flip_v = true
+billboard = 1
+texture = SubResource( 19 )
