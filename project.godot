@@ -19,7 +19,7 @@ config/icon="res://icon.png"
 
 [editor]
 
-main_run_args="--terrain amplitude=5 heightMap=textures/terrain/whirl300.png --plants energyMin=60 energyMax=70 spawnDelay=.3 --colony quantity=50 x=0,70 z=0,72 ageMax=30 hopForceForwards=5,15 hopForceUp=5,15 wanderRange=40,60 reproductiveCost=20,30 reproductiveThreshold=30,40 greed=30,50 mutationChance=35 mutationPotency=.3 species=1 coat=textures/coat/coat-refined.png baseColour=147.107.84 patternColour=230.214.222"
+main_run_args="--terrain amplitude=2 heightMap=textures/terrain/mountain.png --plants energyMin=30 energyMax=40 spawnDelay=.5 --colony quantity=50 x=0,70 z=0,72 ageMax=50 hopForceForwards=5,15 hopForceUp=5,15 wanderRange=40,60 reproductiveCost=20,30 reproductiveThreshold=30,40 greed=30,50 mutationChance=35 mutationPotency=.3 species=1 coat=textures/coat/coat-refined.png baseColour=147.107.84 patternColour=230.214.222"
 
 [input]
 
