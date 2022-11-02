@@ -140,23 +140,23 @@ func rabbitInit(rabbitAttributesArguments):
 	}
 	
 	for attribute in rabbitAttributes:
-		if attribute == "quantity": 
+		if attribute == "quantity" or \
+			attribute == "x" or \
+			attribute == "z":
 			var valueAndError = validateInteger(attribute, rabbitAttributes[attribute])
 			rabbitRules[attribute] = valueAndError[0]
 			error = error + valueAndError[1]
-		elif attribute == "x": 
-			var valueAndError = validateInteger(attribute, rabbitAttributes[attribute])
-			rabbitRules[attribute] = valueAndError[0]
-			error = error + valueAndError[1]
-		elif attribute == "z": 
-			var valueAndError = validateInteger(attribute, rabbitAttributes[attribute])
-			rabbitRules[attribute] = valueAndError[0]
-			error = error + valueAndError[1]
-		elif attribute == "species": 
+		elif attribute == "species" or \
+			attribute == "ageMax" or \
+			attribute == "hopForceForwards" or \
+			attribute == "hopForceUp" or \
+			attribute == "wanderRange" or \
+			attribute == "reproductiveThreshold" or \
+			attribute == "reproductiveCost" or \
+			attribute == "greed":
 			var valueAndError = validateInteger(attribute, rabbitAttributes[attribute])
 			rabbitTraits[attribute] = valueAndError[0]
 			error = error + valueAndError[1]
-			
 		elif attribute == "mutationPotency": 
 			var valueAndError = validateFloat(attribute, rabbitAttributes[attribute])
 			rabbitTraits[attribute] = valueAndError[0]
@@ -165,50 +165,17 @@ func rabbitInit(rabbitAttributesArguments):
 			var valueAndError = validatePercentage(attribute, rabbitAttributes[attribute])
 			rabbitTraits[attribute] = valueAndError[0]
 			error = error + valueAndError[1]
-		elif attribute == "ageMax": 
-			var valueAndError = validateInteger(attribute, rabbitAttributes[attribute])
-			rabbitTraits[attribute] = valueAndError[0]
-			error = error + valueAndError[1]
-		elif attribute == "hopForceForwards": 
-			var valueAndError = validateInteger(attribute, rabbitAttributes[attribute])
-			rabbitTraits[attribute] = valueAndError[0]
-			error = error + valueAndError[1]
-		elif attribute == "hopForceUp": 
-			var valueAndError = validateInteger(attribute, rabbitAttributes[attribute])
-			rabbitTraits[attribute] = valueAndError[0]
-			error = error + valueAndError[1]
-		elif attribute == "wanderRange": 
-			var valueAndError = validateInteger(attribute, rabbitAttributes[attribute])
-			rabbitTraits[attribute] = valueAndError[0]
-			error = error + valueAndError[1]
-		elif attribute == "reproductiveThreshold": 
-			var valueAndError = validateInteger(attribute, rabbitAttributes[attribute])
-			rabbitTraits[attribute] = valueAndError[0]
-			error = error + valueAndError[1]
-		elif attribute == "reproductiveCost": 
-			var valueAndError = validateInteger(attribute, rabbitAttributes[attribute])
-			rabbitTraits[attribute] = valueAndError[0]
-			error = error + valueAndError[1]
-		elif attribute == "greed": 
-			var valueAndError = validateInteger(attribute, rabbitAttributes[attribute])
-			rabbitTraits[attribute] = valueAndError[0]
-			error = error + valueAndError[1]
 		elif attribute == "coat": 
 			var valueAndError = validateFilePath(attribute, rabbitAttributes[attribute])
 			rabbitTraits[attribute] = valueAndError[0]
 			error = error + valueAndError[1]
-		elif attribute == "baseColour": 
-			var valueAndError = validateColour(attribute, rabbitAttributes[attribute])
-			rabbitTraits[attribute] = valueAndError[0]
-			
-			error = error + valueAndError[1]
-		elif attribute == "patternColour": 
+		elif attribute == "baseColour" or \
+			attribute == "patternColour": 
 			var valueAndError = validateColour(attribute, rabbitAttributes[attribute])
 			rabbitTraits[attribute] = valueAndError[0]
 			error = error + valueAndError[1]
 		else:
 			error = error + "Invalid attribute: " + attribute + "\n"
-			
 			
 	for attribute in rabbitTraits:
 		if rabbitTraits[attribute] == null:
@@ -217,9 +184,7 @@ func rabbitInit(rabbitAttributesArguments):
 		if rabbitRules[attribute] == null:
 			error = error + "Unspecified attribute: " + attribute + "\n"
 	
-
 	var rabbitNew
-	
 	
 	if error == "":
 		for rabbit in range(getRandom(rabbitRules["quantity"])):
@@ -262,6 +227,7 @@ func validateInteger(attributeName, attributeValue):
 	if attributeSplit.size() != 2 and attributeSplit.size() != 1:
 		errorNew = errorNew + "Invalid range: " + attributeName + "\n"
 	return [attributesAsArray, errorNew]
+	
 func validateFloat(attributeName, attributeValue):
 	var attributeSplit = attributeValue.split(",")
 	var attributesAsArray = []
@@ -275,6 +241,7 @@ func validateFloat(attributeName, attributeValue):
 	if attributeSplit.size() != 2 and attributeSplit.size() != 1:
 		errorNew = errorNew + "Invalid range: " + attributeName + "\n"
 	return [attributesAsArray, errorNew]
+	
 func validatePercentage(attributeName, attributeValue):
 	var attributeSplit = attributeValue.split(",")
 	var attributesAsArray = []
@@ -287,8 +254,8 @@ func validatePercentage(attributeName, attributeValue):
 			errorNew = errorNew + "Must be an integer from 0 to 100" + attributeName + "\n"
 	if attributeSplit.size() != 2 and attributeSplit.size() != 1:
 		errorNew = errorNew + "Invalid range: " + attributeName + "\n"
-	
 	return [attributesAsArray, errorNew]
+	
 func validateFilePath(attributeName, attributeValue):
 	var heightMapFile = File.new()
 	var attributeSplit = attributeValue.split(",")
@@ -299,23 +266,21 @@ func validateFilePath(attributeName, attributeValue):
 		if !heightMapFile.file_exists(attribute):
 			errorNew = errorNew + "File not found: " + attributeValue + "\n"
 	return [attributesAsArray, errorNew]
+	
 func validateColour(attributeName, attributeValue):
 	var attributeSplit = attributeValue.split(".") # each r.g.b colours are serated by "."
 	var colours = ["red", "green", "blue"]
 	var errorNew = ""
 	if attributeSplit.size() != 3:
 		errorNew = errorNew + "Invalid colour: " + attributeValue + "\n"
-	
 	for i in attributeSplit.size():
 		if isAnInt.search(attributeSplit[i]) == null:
 			errorNew = errorNew + "Invalid " + colours[i] + " in: " + attributeValue + "\n"
 		else:
 			if int(attributeSplit[i]) < 0 or int(attributeSplit[i]) > 255:
 				errorNew = errorNew + "Invalid " + colours[i] + " in: " + attributeValue + "\n"
-	
 	if errorNew == "":
 		attributeValue = Vector3(float(attributeSplit[0])/255, float(attributeSplit[1])/255, float(attributeSplit[2])/255)
-
 	return [attributeValue, errorNew]
 
 func getRandom(attributeRange):
